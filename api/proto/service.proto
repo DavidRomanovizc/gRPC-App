@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package api;
+
+service Broadcast {
+  rpc CreateStream(Connect) returns (stream Message);
+  rpc BroadcastMessage(Message) returns (Close);
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+}
+
+message Message{
+  string id = 1;
+  string connect = 2;
+  string timestamp = 3;
+}
+
+message Connect{
+  User user = 1;
+  bool active = 2;
+}
+
+message Close{}
